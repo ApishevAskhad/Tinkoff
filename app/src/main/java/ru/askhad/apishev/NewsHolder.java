@@ -18,4 +18,8 @@ public class NewsHolder extends RecyclerView.ViewHolder {
     public void bind(News .PayloadBean item) {
         mTitle.setText(item.getText());
     }
+
+    public void setListener(NewsAdapter.OnItemClickListener listener) {
+        itemView.setOnClickListener(v -> listener.onItemClick());
+    }
 }

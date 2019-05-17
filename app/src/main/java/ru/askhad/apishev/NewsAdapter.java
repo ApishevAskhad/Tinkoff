@@ -14,6 +14,7 @@ import ru.askhad.apishev.model.News;
 public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
     @NonNull
     private final List<News.PayloadBean> mNews = new ArrayList<>();
+    private OnItemClickListener mListener;
 
     @Override
     public NewsHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -26,6 +27,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
     public void onBindViewHolder(@NonNull NewsHolder newsHolder, int i) {
         News.PayloadBean payloadBean = mNews.get(i);
         newsHolder.bind(payloadBean);
+        newsHolder.setListener(mListener);
     }
 
     @Override
@@ -38,5 +40,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
             mNews.clear();
         mNews.addAll(news);
         notifyDataSetChanged();
+    }
+
+    public void setListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick();
     }
 }

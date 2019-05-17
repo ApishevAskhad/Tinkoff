@@ -1,6 +1,7 @@
 package ru.askhad.apishev.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,12 +23,20 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     private RecyclerView mRecycler;
     private SwipeRefreshLayout mRefresher;
+    private NewsAdapter.OnItemClickListener mListener;
 
     @NonNull
     private final NewsAdapter mNewsAdapter = new NewsAdapter();
 
     public static RecyclerFragment newInstance() {
         return new RecyclerFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof NewsAdapter.OnItemClickListener)
+            mListener = (NewsAdapter.OnItemClickListener) context;
     }
 
     @Nullable
@@ -48,6 +57,7 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
         super.onActivityCreated(savedInstanceState);
         mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecycler.setAdapter(mNewsAdapter);
+        mNewsAdapter.setListener(mListener);
         onRefresh();
     }
 
@@ -66,5 +76,11 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
                 .doOnSubscribe(disposable -> mRefresher.setRefreshing(true))
                 .doFinally(() -> mRefresher.setRefreshing(false))
                 .subscribe(news -> mNewsAdapter.addNews(news.getPayload(), true));
+    }
+
+    @Override
+    public void onDetach() {
+        mListener = null;
+        super.onDetach();
     }
 }
