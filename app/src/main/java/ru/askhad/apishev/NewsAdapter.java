@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.askhad.apishev.model.News;
+import ru.askhad.apishev.model.Title;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
     @NonNull
-    private final List<News.PayloadBean> mNews = new ArrayList<>();
+    private final List<Title> mNews = new ArrayList<>();
     private OnItemClickListener mListener;
 
     @Override
@@ -25,8 +25,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NewsHolder newsHolder, int i) {
-        News.PayloadBean payloadBean = mNews.get(i);
-        newsHolder.bind(payloadBean);
+        Title title = mNews.get(i);
+        newsHolder.bind(title);
         newsHolder.setListener(mListener);
     }
 
@@ -35,7 +35,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
         return mNews.size();
     }
 
-    public void addNews(List<News.PayloadBean> news, boolean isRefreshed) {
+    public void addNews(List<Title> news, boolean isRefreshed) {
         if (isRefreshed)
             mNews.clear();
         mNews.addAll(news);

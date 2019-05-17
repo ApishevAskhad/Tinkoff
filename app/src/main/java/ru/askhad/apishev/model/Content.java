@@ -2,6 +2,7 @@ package ru.askhad.apishev.model;
 
 import com.google.gson.annotations.SerializedName;
 
+
 public class Content {
     @SerializedName("resultCode")
     private String mResultCode;

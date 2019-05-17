@@ -75,7 +75,7 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> mRefresher.setRefreshing(true))
                 .doFinally(() -> mRefresher.setRefreshing(false))
-                .subscribe(news -> mNewsAdapter.addNews(news.getPayload(), true));
+                .subscribe(news -> mNewsAdapter.addNews(news.getTitle(), true));
     }
 
     @Override
