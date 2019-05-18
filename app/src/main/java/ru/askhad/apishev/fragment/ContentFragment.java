@@ -17,7 +17,7 @@ public class ContentFragment extends Fragment {
     private String sample = "<p>Москва, Россия&nbsp;&mdash; 19 декабря 2017&nbsp;г.<br />\nСегодня клиенты Тинькофф Банка получили доступ к&nbsp;системе бесконтактной оплаты Garmin Pay.</p>\n\n<p>Garmin Pay&nbsp;&mdash; удобный и&nbsp;безопасный способ оплаты для владельцев часов Garmin. Сервис разработан для людей, которые ведут активный образ жизни, и&nbsp;спортсменов&nbsp;&mdash; им&nbsp;будет особенно удобно расплатиться часами, даже если под рукой нет карты или смартфона.</p>\\n\\n<p>Перед покупкой необходимо с&nbsp;помощью смартфона создать виртуальный кошелек в&nbsp;приложении Garmin Connect и&nbsp;привязать к&nbsp;нему кредитную или дебетовую карту Mastercard Тинькофф Банка.</p>\\n\\n<p>Для оплаты достаточно ввести пароль из&nbsp;<nobr>4-х</nobr> цифр и&nbsp;приложить часы к&nbsp;терминалу.</p>\\n\\n<p>Пароль будет запрашиваться в&nbsp;следующих случаях:</p>\\n\\n<ul class=\\\"bull\\\">\\n\\t<li>Первое использование после снятия часов;</li>\\n\\t<li>Прошло более <nobr>24-х</nobr> часов с&nbsp;момента последней оплаты;</li>\\n\\t<li>На&nbsp;часах отключен датчик пульса.</li>\\n</ul>\\n\\n<p>На&nbsp;текущий момент с&nbsp;сервисом Garmin Pay совместима модель часов vivoactive 3.</p>\\n\\n<p>Garmin не&nbsp;будет удерживать комиссию за&nbsp;использование технологии Garmin Pay с&nbsp;пользователей, <nobr>банков-эмитентов</nobr>, <nobr>банков-эквайеров</nobr> и&nbsp;торговых предприятий.</p>";
 
     public static ContentFragment newInstance() {
-       return new ContentFragment();
+        return new ContentFragment();
     }
 
     @Nullable

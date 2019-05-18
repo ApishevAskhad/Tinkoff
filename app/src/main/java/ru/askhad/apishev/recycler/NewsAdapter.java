@@ -1,4 +1,4 @@
-package ru.askhad.apishev;
+package ru.askhad.apishev.recycler;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.askhad.apishev.R;
 import ru.askhad.apishev.model.Title;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {

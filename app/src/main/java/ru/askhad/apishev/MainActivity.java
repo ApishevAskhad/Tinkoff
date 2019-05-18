@@ -4,9 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import ru.askhad.apishev.db.TitlesDao;
+import ru.askhad.apishev.db.NewsDao;
 import ru.askhad.apishev.fragment.ContentFragment;
 import ru.askhad.apishev.fragment.RecyclerFragment;
+import ru.askhad.apishev.recycler.NewsAdapter;
 
 public class MainActivity extends AppCompatActivity implements NewsAdapter.OnItemClickListener {
     private FragmentManager fragmentManager;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnIte
                     .commit();
         }
 
-        final TitlesDao titlesDao = ((App) getApplicationContext()).getDb().getTitlesDao();
+        final NewsDao titlesDao = ((App) getApplicationContext()).getDb().getTitlesDao();
     }
 
     @Override

@@ -15,9 +15,11 @@ import android.view.ViewGroup;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import ru.askhad.apishev.NewsAdapter;
+import ru.askhad.apishev.App;
 import ru.askhad.apishev.R;
-import ru.askhad.apishev.utils.NetworkUtils;
+import ru.askhad.apishev.db.NewsDao;
+import ru.askhad.apishev.network.NetworkUtils;
+import ru.askhad.apishev.recycler.NewsAdapter;
 
 public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -63,24 +65,48 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        mRefresher.post(this::getNews);
+        mRefresher.post(this::loadTitles);
     }
 
     @SuppressLint("CheckResult")
-    private void getNews() {
+    private void loadTitles() {
         NetworkUtils.getInstance()
                 .getTinkoffApi()
                 .getNews()
                 .subscribeOn(Schedulers.io())
+                .doOnSuccess(titles -> getNewsDao().insertTitles(titles.getTitle()))
+                .onErrorReturn(throwable -> {
+                    /*if (NetworkUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass())) {
+                        Titles titles = new Titles();
+                        titles.setTitle(getNewsDao().getTitles());
+                        return titles;
+                    }*/
+                    return null;
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> mRefresher.setRefreshing(true))
                 .doFinally(() -> mRefresher.setRefreshing(false))
-                .subscribe(news -> mNewsAdapter.addNews(news.getTitle(), true));
+                .subscribe(news -> {
+                    mNewsAdapter.addNews(news.getTitle(), true);
+                    loadContent(news.getTitle());
+                });
     }
 
     @Override
     public void onDetach() {
         mListener = null;
         super.onDetach();
+    }
+
+    private void loadContent(String id) {
+        NetworkUtils.getInstance()
+                .getTinkoffApi()
+                .getContent(id)
+                .subscribeOn(Schedulers.io())
+                .doOnSuccess(content -> getNewsDao().insertContent(content));
+    }
+
+    private NewsDao getNewsDao() {
+        return ((App) getActivity().getApplication()).getDb().getTitlesDao();
     }
 }
