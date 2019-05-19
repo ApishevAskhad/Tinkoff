@@ -1,6 +1,7 @@
 package ru.askhad.apishev.model;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
@@ -18,11 +19,11 @@ public class Payload {
     private int id;
 
     @SerializedName("creationDate")
-    @ColumnInfo(name = "creation_date")
+    @Embedded(prefix = "creation_date")
     private Date creationDate;
 
     @SerializedName("lastModificationDate")
-    @ColumnInfo(name = "last_modification_date")
+    @Embedded(prefix = "last_modification_date")
     private Date lastModificationDate;
 
     @SerializedName("content")

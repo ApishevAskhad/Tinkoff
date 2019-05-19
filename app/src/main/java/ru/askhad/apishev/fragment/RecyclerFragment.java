@@ -74,21 +74,27 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
                 .getTinkoffApi()
                 .getNews()
                 .subscribeOn(Schedulers.io())
-                .doOnSuccess(titles -> getNewsDao().insertTitles(titles.getTitle()))
+                /*
+                //TODO sort data by publication_date
+                //TODO write data into Room database on success response
+                .doOnSuccess(titles -> getNewsDao().insertTitles(titles.getTitles()))
+                //TODO read data from Room database on error
                 .onErrorReturn(throwable -> {
-                    /*if (NetworkUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass())) {
+                    if (NetworkUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass())) {
                         Titles titles = new Titles();
-                        titles.setTitle(getNewsDao().getTitles());
+                        titles.setTitles(getNewsDao().getTitles());
                         return titles;
-                    }*/
-                    return null;
+                    } else {
+                        return null;
+                    }
                 })
+                */
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> mRefresher.setRefreshing(true))
                 .doFinally(() -> mRefresher.setRefreshing(false))
-                .subscribe(news -> {
-                    mNewsAdapter.addNews(news.getTitle(), true);
-                    loadContent(news.getTitle());
+                .subscribe(titles -> {
+                    mNewsAdapter.addTitles(titles.getTitles(), true);
+                    //TODO get content from server and store it into Room database
                 });
     }
 
@@ -96,14 +102,6 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
     public void onDetach() {
         mListener = null;
         super.onDetach();
-    }
-
-    private void loadContent(String id) {
-        NetworkUtils.getInstance()
-                .getTinkoffApi()
-                .getContent(id)
-                .subscribeOn(Schedulers.io())
-                .doOnSuccess(content -> getNewsDao().insertContent(content));
     }
 
     private NewsDao getNewsDao() {

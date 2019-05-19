@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import ru.askhad.apishev.db.NewsDao;
 import ru.askhad.apishev.fragment.ContentFragment;
 import ru.askhad.apishev.fragment.RecyclerFragment;
 import ru.askhad.apishev.recycler.NewsAdapter;
@@ -24,8 +23,6 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnIte
                     .add(R.id.container, RecyclerFragment.newInstance())
                     .commit();
         }
-
-        final NewsDao titlesDao = ((App) getApplicationContext()).getDb().getTitlesDao();
     }
 
     @Override

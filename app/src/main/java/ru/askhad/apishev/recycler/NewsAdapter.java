@@ -36,10 +36,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
         return mNews.size();
     }
 
-    public void addNews(List<Title> news, boolean isRefreshed) {
+    public void addTitles(List<Title> titles, boolean isRefreshed) {
         if (isRefreshed)
             mNews.clear();
-        mNews.addAll(news);
+        mNews.addAll(titles);
         notifyDataSetChanged();
     }
 

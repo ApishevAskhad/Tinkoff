@@ -8,7 +8,7 @@ public class Titles {
     @SerializedName("resultCode")
     private String mResultCode;
     @SerializedName("payload")
-    private List<Title> mTitle;
+    private List<Title> mTitles;
     @SerializedName("trackingId")
     private String mTrackingId;
 
@@ -28,11 +28,11 @@ public class Titles {
         mTrackingId = trackingId;
     }
 
-    public List<Title> getTitle() {
-        return mTitle;
+    public List<Title> getTitles() {
+        return mTitles;
     }
 
-    public void setTitle(List<Title> mTitle) {
-        this.mTitle = mTitle;
+    public void setTitles(List<Title> mTitle) {
+        this.mTitles = mTitle;
     }
 }

@@ -7,7 +7,7 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import ru.askhad.apishev.model.Content;
+import ru.askhad.apishev.model.Payload;
 import ru.askhad.apishev.model.Title;
 
 @Dao
@@ -19,5 +19,5 @@ public interface NewsDao {
     void insertTitles(List<Title> titles);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertContent(Content content);
+    void insertContent(Payload content);
 }
