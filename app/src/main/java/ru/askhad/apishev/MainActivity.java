@@ -1,8 +1,9 @@
 package ru.askhad.apishev;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import ru.askhad.apishev.fragment.ContentFragment;
 import ru.askhad.apishev.fragment.RecyclerFragment;

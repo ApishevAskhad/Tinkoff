@@ -1,6 +1,7 @@
 package ru.askhad.apishev.model;
 
-import android.arch.persistence.room.ColumnInfo;
+
+import androidx.room.ColumnInfo;
 
 import com.google.gson.annotations.SerializedName;
 

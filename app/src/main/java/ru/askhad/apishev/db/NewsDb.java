@@ -1,7 +1,8 @@
 package ru.askhad.apishev.db;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
+
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
 
 import ru.askhad.apishev.model.Payload;
 import ru.askhad.apishev.model.Title;
