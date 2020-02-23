@@ -1,1 +1,1 @@
-# Tinkoff-News-TestTask
+# TestTask
