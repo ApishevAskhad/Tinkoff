@@ -1,10 +1,11 @@
-package ru.askhad.apishev;
+package ru.askhad.apishev.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import ru.askhad.apishev.R;
 import ru.askhad.apishev.fragment.ContentFragment;
 import ru.askhad.apishev.fragment.RecyclerFragment;
 import ru.askhad.apishev.recycler.NewsAdapter;

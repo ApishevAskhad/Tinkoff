@@ -16,9 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import ru.askhad.apishev.App;
 import ru.askhad.apishev.R;
-import ru.askhad.apishev.db.NewsDao;
 import ru.askhad.apishev.network.NetworkUtils;
 import ru.askhad.apishev.recycler.NewsAdapter;
 
@@ -105,7 +103,4 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
         super.onDetach();
     }
 
-    private NewsDao getNewsDao() {
-        return ((App) getActivity().getApplication()).getDb().getTitlesDao();
-    }
 }
