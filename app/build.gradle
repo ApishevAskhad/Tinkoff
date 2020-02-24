@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
@@ -39,6 +40,7 @@ dependencies {
     //UI
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
 
     //Room
     implementation 'androidx.room:room-runtime:2.2.4'
