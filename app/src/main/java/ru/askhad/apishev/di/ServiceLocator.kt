@@ -17,4 +17,6 @@ object ServiceLocator {
                 .allowMainThreadQueries()
                 .build()
     }
+
+    val dataInteractor = DataInteractorImpl()
 }

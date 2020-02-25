@@ -2,9 +2,9 @@ package ru.askhad.apishev.view_model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import ru.askhad.apishev.view_model.support.RxViewModel
 
-class ActivityViewModel : ViewModel() {
+class ActivityViewModel : RxViewModel() {
     private val _result = MutableLiveData<Boolean>()
     val result: LiveData<Boolean> = _result
 
