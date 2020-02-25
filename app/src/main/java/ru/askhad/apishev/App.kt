@@ -1,6 +1,7 @@
 package ru.askhad.apishev
 
 import android.app.Application
+import android.util.Log
 import com.facebook.stetho.Stetho
 
 class App : Application() {

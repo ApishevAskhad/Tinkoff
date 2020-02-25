@@ -19,8 +19,8 @@ class SingleActivity : AppCompatActivity() {
     val compositeDisposable = CompositeDisposable()
     val service = TinkoffApi.create()
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity)
 
         val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[ActivityViewModel::class.java]
@@ -28,15 +28,18 @@ class SingleActivity : AppCompatActivity() {
 
         })
 
-        val request = service
-                .getContentById("10024")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { content ->
-                    Log.d("ji39", content.content)
-                }
 
         make_request.setOnClickListener {
+            Log.d("jiso8", "click")
+            val request = service
+                    .getContentById("10024")
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ content ->
+                        Log.d("ji39", content.content)
+                    }, { error ->
+                        Log.d("ji39", error.message)
+                    })
             compositeDisposable.add(request)
         }
 
