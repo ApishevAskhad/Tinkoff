@@ -1,6 +1,8 @@
 package ru.askhad.apishev.fragment
 
 import android.os.Bundle
+import androidx.core.text.HtmlCompat
+import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fr_content.*
@@ -31,7 +33,7 @@ class ContentFragment : MVVMFragment<ContentViewModel>() {
 
     override fun observeLiveData() {
         viewModel.result.observe(this, Observer { content ->
-            tv_content.text = content.content
+            tv_content.text = HtmlCompat.fromHtml(content.content!!, FROM_HTML_MODE_LEGACY)
         })
     }
 }
