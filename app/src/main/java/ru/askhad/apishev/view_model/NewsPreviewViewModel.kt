@@ -7,6 +7,7 @@ import io.reactivex.schedulers.Schedulers
 import ru.askhad.apishev.di.DataInteractor
 import ru.askhad.apishev.fragment.NewsPreviewModel
 import ru.askhad.apishev.view_model.support.RxViewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 class NewsPreviewViewModel(
@@ -21,12 +22,16 @@ class NewsPreviewViewModel(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map {list ->
+                    list.sortedBy {
+                        it.publicationDate?.milliseconds
+                    }
                     list.forEach {title->
-                        val currentTime = Calendar.getInstance()
+                        val date = Date(title.publicationDate?.milliseconds!!)
+
                         val model = NewsPreviewModel(
                                 title.id,
                                 title.text,
-                                title.publicationDate?.milliseconds.toString()
+                                SimpleDateFormat("HH:mm dd MM yyyy").format(date)
                         )
                         modelList.add(model)
                     }
