@@ -3,6 +3,7 @@ package ru.askhad.apishev.view_model.support
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import ru.askhad.apishev.di.ServiceLocator
+import ru.askhad.apishev.view_model.ContentViewModel
 import ru.askhad.apishev.view_model.NewsPreviewViewModel
 
 class CustomViewModelFactory : ViewModelProvider.Factory{
@@ -10,6 +11,9 @@ class CustomViewModelFactory : ViewModelProvider.Factory{
         return when (modelClass) {
             NewsPreviewViewModel::class.java -> NewsPreviewViewModel(
                 ServiceLocator.dataInteractor
+            ) as T
+            ContentViewModel::class.java -> ContentViewModel(
+                    ServiceLocator.dataInteractor
             ) as T
             else -> throw IllegalArgumentException("ViewModel is not found")
         }

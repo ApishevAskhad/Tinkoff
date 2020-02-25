@@ -29,4 +29,10 @@ class NewsPreviewAdapter(val onItemClicked: (id: String?) -> Unit) :
     override fun onBindViewHolder(holder: NewsPreviewViewHolder, position: Int) {
         holder.bind(itemList[position])
     }
+
+    fun updateList(newItems: List<NewsPreviewModel>) {
+        itemList.clear()
+        itemList.addAll(newItems)
+        notifyDataSetChanged()
+    }
 }

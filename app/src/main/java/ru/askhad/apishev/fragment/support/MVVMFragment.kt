@@ -1,4 +1,4 @@
-package ru.askhad.apishev.fragment
+package ru.askhad.apishev.fragment.support
 
 import android.os.Bundle
 import android.view.LayoutInflater
