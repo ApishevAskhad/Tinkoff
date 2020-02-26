@@ -6,16 +6,20 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ru.askhad.apishev.di.DataInteractor
 import ru.askhad.apishev.fragment.NewsPreviewModel
+import ru.askhad.apishev.state.NewsPreviewState
+import ru.askhad.apishev.state.NewsPreviewState.Error
+import ru.askhad.apishev.state.NewsPreviewState.Correct
 import ru.askhad.apishev.view_model.support.RxViewModel
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.net.ssl.SSLHandshakeException
 
 class NewsPreviewViewModel(
         private val dataInteractor: DataInteractor
 ) : RxViewModel() {
     private val modelList = mutableListOf<NewsPreviewModel>()
-    private val _result = MutableLiveData<List<NewsPreviewModel>>()
-    val result: LiveData<List<NewsPreviewModel>> = _result
+    private val _result = MutableLiveData<NewsPreviewState>()
+    val result: LiveData<NewsPreviewState> = _result
 
     fun onLoadingData(update: Boolean? = false) {
         dataInteractor.getTitles()
@@ -37,9 +41,11 @@ class NewsPreviewViewModel(
                     }
                 }
                 .subscribe({
-                    _result.value = modelList
+                    _result.value = Correct(modelList)
                 }, { error ->
-
+                    when (error) {
+                        is SSLHandshakeException -> _result.value = Error
+                    }
                 })
                 .autoDispose()
     }

@@ -2,6 +2,7 @@ package ru.askhad.apishev.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +12,9 @@ import kotlinx.android.synthetic.main.fr_news_preview.*
 import ru.askhad.apishev.R
 import ru.askhad.apishev.fragment.support.CONTENT_ID_KEY
 import ru.askhad.apishev.fragment.support.MVVMFragment
+import ru.askhad.apishev.state.NewsPreviewState
+import ru.askhad.apishev.state.NewsPreviewState.Error
+import ru.askhad.apishev.state.NewsPreviewState.Correct
 import ru.askhad.apishev.view_model.NewsPreviewViewModel
 import ru.askhad.apishev.view_model.support.CustomViewModelFactory
 
@@ -24,8 +28,15 @@ class NewsPreviewFragment : MVVMFragment<NewsPreviewViewModel>() {
     }
 
     override fun observeLiveData() {
-        viewModel.result.observe(this, Observer { list ->
-            newsPreviewAdapter.updateList(list)
+        viewModel.result.observe(this, Observer { state ->
+            when (state) {
+                is Correct -> {
+                    newsPreviewAdapter.updateList(state.data)
+                }
+                is Error -> {
+                    Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+                }
+            }
         })
     }
 
