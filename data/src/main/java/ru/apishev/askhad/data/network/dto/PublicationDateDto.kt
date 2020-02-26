@@ -2,7 +2,7 @@ package ru.apishev.askhad.data.network.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class PublicationDate(
+data class PublicationDateDto(
 
 	@field:SerializedName("milliseconds")
 	val milliseconds: Long? = null

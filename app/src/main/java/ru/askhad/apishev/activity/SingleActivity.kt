@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.askhad.apishev.R
+import ru.askhad.apishev.di.ServiceLocator
 import ru.askhad.apishev.fragment.NewsPreviewFragment
 import ru.askhad.apishev.view_model.ActivityViewModel
 

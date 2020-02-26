@@ -14,9 +14,8 @@ object ServiceLocator {
 
     val database by lazy {
         Room.databaseBuilder(appContext, AppDatabase::class.java, DATABASE_NAME)
-                .allowMainThreadQueries()
                 .build()
     }
 
-    val dataInteractor = DataInteractorImpl()
+    val dataInteractor = DataInteractorImpl(database)
 }
