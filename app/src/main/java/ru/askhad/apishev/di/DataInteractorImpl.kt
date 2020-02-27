@@ -9,9 +9,8 @@ import ru.apishev.askhad.data.network.TinkoffApi
 import ru.apishev.askhad.data.network.dto.ContentDto
 import ru.apishev.askhad.data.network.dto.TitleDto
 
-class DataInteractorImpl(val database: AppDatabase) : DataInteractor {
+class DataInteractorImpl(private val dao: AppDao) : DataInteractor {
     private val service = TinkoffApi.create()
-    private val dao = database.appDao()
 
     override fun getTitles(): Observable<List<TitleDto>> {
         return service

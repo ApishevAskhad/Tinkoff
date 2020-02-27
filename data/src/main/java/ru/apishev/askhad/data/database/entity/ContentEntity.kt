@@ -21,10 +21,10 @@ data class ContentEntity(
         @ColumnInfo(name = "title_id")
         val titleId: Long,
 
-        @ColumnInfo(name = "creation_date", typeAffinity = TEXT)
+        @ColumnInfo(name = "creation_date", typeAffinity = INTEGER)
         val creationDate: Long,
 
-        @ColumnInfo(name = "last_modification_date", typeAffinity = TEXT)
+        @ColumnInfo(name = "last_modification_date", typeAffinity = INTEGER)
         val lastModificationDate: Long,
 
         @ColumnInfo(typeAffinity = TEXT)

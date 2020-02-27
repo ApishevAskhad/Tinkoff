@@ -17,5 +17,8 @@ object ServiceLocator {
                 .build()
     }
 
-    val dataInteractor = DataInteractorImpl(database)
+    val dataInteractor by lazy {
+        val dao = database.appDao()
+        return@lazy DataInteractorImpl(dao)
+    }
 }

@@ -20,7 +20,7 @@ data class TitleEntity(
         @ColumnInfo(typeAffinity = TEXT)
         val text: String,
 
-        @ColumnInfo(name = "publication_date", typeAffinity = TEXT)
+        @ColumnInfo(name = "publication_date", typeAffinity = INTEGER)
         val publicationDate: Long,
 
         @ColumnInfo(name = "bank_info_type_id", typeAffinity = INTEGER)
