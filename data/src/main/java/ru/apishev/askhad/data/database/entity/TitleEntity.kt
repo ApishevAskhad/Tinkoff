@@ -8,10 +8,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "titles")
 data class TitleEntity(
-        @PrimaryKey(autoGenerate = true)
-        val id: Int? = null,
-
-        @ColumnInfo(name = "contend_id", typeAffinity = TEXT)
+        @PrimaryKey
+        @ColumnInfo(name = "content_id", typeAffinity = TEXT)
         val contentId: String,
 
         @ColumnInfo(typeAffinity = TEXT)

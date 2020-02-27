@@ -11,13 +11,11 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "contents",
         foreignKeys = [ForeignKey(
                 entity = TitleEntity::class,
-                parentColumns = ["id"],
+                parentColumns = ["content_id"],
                 childColumns = ["title_id"],
                 onDelete = CASCADE)])
 data class ContentEntity(
-        @PrimaryKey(autoGenerate = true)
-        val id: Int,
-
+        @PrimaryKey
         @ColumnInfo(name = "title_id")
         val titleId: Long,
 
